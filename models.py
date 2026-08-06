@@ -174,3 +174,233 @@ class FacebookPage(Base):
         "User",
         back_populates="pages"
     )
+
+# ==========================
+# SCHEDULED POST
+# ==========================
+
+class ScheduledPost(Base):
+
+    __tablename__ = "scheduled_posts"
+
+    id = Column(
+        Integer,
+        primary_key=True
+    )
+
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id")
+    )
+
+    page_id = Column(
+        Integer,
+        ForeignKey("facebook_pages.id")
+    )
+
+    post_type = Column(
+        String(20)
+    )
+
+    caption = Column(
+        Text
+    )
+
+    media_url = Column(
+        Text
+    )
+
+    schedule_time = Column(
+        DateTime
+    )
+
+    status = Column(
+        String(20),
+        default="PENDING"
+    )
+
+    created_at = Column(
+        DateTime,
+        default=datetime.utcnow
+    )
+
+    user = relationship(
+        "User",
+        back_populates="scheduled_posts"
+    )
+
+    page = relationship(
+        "FacebookPage"
+    )
+
+
+# ==========================
+# PUBLISHED POST
+# ==========================
+
+class PublishedPost(Base):
+
+    __tablename__ = "published_posts"
+
+    id = Column(
+        Integer,
+        primary_key=True
+    )
+
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id")
+    )
+
+    page_id = Column(
+        Integer,
+        ForeignKey("facebook_pages.id")
+    )
+
+    facebook_post_id = Column(
+        String(255)
+    )
+
+    post_type = Column(
+        String(20)
+    )
+
+    caption = Column(
+        Text
+    )
+
+    published_at = Column(
+        DateTime,
+        default=datetime.utcnow
+    )
+
+    user = relationship(
+        "User",
+        back_populates="published_posts"
+    )
+
+    page = relationship(
+        "FacebookPage"
+    )
+
+# ==========================
+# COMMENT AUTO REPLY
+# ==========================
+
+class CommentReply(Base):
+
+    __tablename__ = "comment_replies"
+
+    id = Column(
+        Integer,
+        primary_key=True
+    )
+
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id")
+    )
+
+    page_id = Column(
+        Integer,
+        ForeignKey("facebook_pages.id")
+    )
+
+    enabled = Column(
+        Boolean,
+        default=False
+    )
+
+    reply_message = Column(
+        Text
+    )
+
+    created_at = Column(
+        DateTime,
+        default=datetime.utcnow
+    )
+
+# ==========================
+# PREMIUM USER
+# ==========================
+
+class PremiumUser(Base):
+
+    __tablename__ = "premium_users"
+
+    id = Column(
+        Integer,
+        primary_key=True
+    )
+
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id")
+    )
+
+    expires_at = Column(
+        DateTime
+    )
+
+    active = Column(
+        Boolean,
+        default=True
+    )
+
+# ==========================
+# SUPPORT TICKET
+# ==========================
+
+class SupportTicket(Base):
+
+    __tablename__ = "support_tickets"
+
+    id = Column(
+        Integer,
+        primary_key=True
+    )
+
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id")
+    )
+
+    subject = Column(
+        String(255)
+    )
+
+    message = Column(
+        Text
+    )
+
+    status = Column(
+        String(30),
+        default="OPEN"
+    )
+
+    created_at = Column(
+        DateTime,
+        default=datetime.utcnow
+    )
+
+# ==========================
+# SETTINGS
+# ==========================
+
+class Setting(Base):
+
+    __tablename__ = "settings"
+
+    id = Column(
+        Integer,
+        primary_key=True
+    )
+
+    key = Column(
+        String(100),
+        unique=True
+    )
+
+    value = Column(
+        Text
+    )
