@@ -1,15 +1,11 @@
-# Facebook Auto Poster SaaS
+# Facebook Auto Post SaaS
 
-Production Ready Telegram + Facebook Automation System.
+Full-stack production SaaS Telegram Bot automating Facebook publishing, comments, and support with AI integration.
 
-Features
+## Quick Start Deployment
 
-- Facebook Login
-- Multi Page
-- Schedule Post
-- Auto Publish
-- AI Reply
-- Premium
-- Admin Panel
-- Docker
-- EC2 Ready
+1. **Clone & Setup Environment:**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your Telegram, Facebook, and OpenAI keys
+   
