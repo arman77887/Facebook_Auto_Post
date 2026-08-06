@@ -1,0 +1,17 @@
+python-telegram-bot==22.2
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+alembic
+python-dotenv
+cryptography
+requests
+httpx
+apscheduler
+python-multipart
+jinja2
+aiofiles
+pydantic
+pydantic-settings
+passlib[bcrypt]
