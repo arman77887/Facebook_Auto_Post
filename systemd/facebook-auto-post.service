@@ -1,0 +1,15 @@
+[Unit]
+Description=Facebook Auto Post SaaS Docker Compose Service
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/facebook-auto-post
+ExecStart=/usr/bin/docker compose up
+ExecStop=/usr/bin/docker compose down
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
